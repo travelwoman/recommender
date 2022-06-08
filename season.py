@@ -33,7 +33,7 @@ def seasonbasedrcm(season):
         if i.get_text().lower()=="image source":
             continue
         if (len(i.get_text())==0 and x==0):
-            y.append((i.get_text())
+            y.append(i.get_text())
             x=x+1
         elif (len(i.get_text())==0 and x>0 or i.get_text().startswith("Suggested Read") or len(i.get_text())<100):
             break
