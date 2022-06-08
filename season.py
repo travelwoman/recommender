@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import pandas as pd
+import json
 def seasonbasedrcm(season):
         
     url="https://traveltriangle.com/blog/best-places-to-visit-in-india-in-"+season+"/"
@@ -27,15 +28,16 @@ def seasonbasedrcm(season):
     #q=b.find_next_sibling("p")
     q=b.find_next_siblings()
     x=0
+    y=[]
     for i in q:
         if i.get_text().lower()=="image source":
             continue
         if (len(i.get_text())==0 and x==0):
-            print(i.get_text())
+            y.append((i.get_text())
             x=x+1
         elif (len(i.get_text())==0 and x>0 or i.get_text().startswith("Suggested Read") or len(i.get_text())<100):
             break
         else:
-            print(i.get_text())
-seasonbasedrcm("summer")
+            y.append(i.get_text())
+    return json.dumps(y)
 
